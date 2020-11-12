@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Library</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<h1>Your Online library</h1>
+
+	<div>
+		<button id="newbtn">Add new book</button>
+	</div>
+
+	<div class="container">
+	  <table id="mytable">
+	 
+		<thead>
+		<tr>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Page Count</th>
+			<th>Read</th>
+			<th></th>
+		</tr>
+	   </thead>
+	  </table>
+	</div>
+
+	<div class="form-wrapper">
+		
+		<form  id="bookform" autocomplete="off">
+		  <div class="book-form">
+			<label for = "Title" class="input-query">Title: </label>
+			<input type="text" name="Title" id="Title" class="input-fields" required>
+			
+			<label for="Author" class="input-query">Author: </label>
+			<input type="text" name="Author" id="Author" class="input-fields" required>
+			
+			<label for = "Page-Count" class="input-query">Page-Count: </label>
+			<input type="number" min="1" name="Page-Count" id="Page-Count" class="input-fields" required>
+			
+			<label for="Read" class="input-query">Read?</label>
+			<input type="checkbox" name="Read" id="Read">
+		  </div>
+			<input type="submit" name="Submit" class="add-book" value="Submit">
+			<button id="close-form">Close</button>
+		</form>
+		
+	</div>
+
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

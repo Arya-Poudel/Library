@@ -1,0 +1,123 @@
+h1{
+	color: #e3891b;
+	text-align: center;
+	font-family: Lucida Calligraphy;
+	text-shadow: 2px 2px yellow;
+
+}
+
+#newbtn{
+	border:1px solid;
+	border-radius: 10px;
+	background: #ada9b8;
+	height: 3em;
+	width: 100px;
+	cursor: pointer;
+	outline: none;
+	margin-left: 50px;
+}
+
+.container{
+	display: flex;
+	justify-content: center;
+	
+}
+
+table{
+			min-width: 600px;
+			border-collapse: collapse;
+			border-radius: 10px;
+			overflow: hidden;
+		}
+
+		thead th{
+			background: #fa9d39;
+			color: black;
+			text-align: left;
+			font-size: 1.3em;
+		}
+
+		th,td{
+			padding: 10px;
+		}
+
+		.row-style{
+			border-bottom: 1px solid #aaa;
+		}
+
+		.last-row-style{
+			border-bottom: 2px solid #fa9d39;
+		}
+
+.blur { 
+	-webkit-filter: blur(3px); 
+	-moz-filter: blur(3px); 
+	-o-filter: blur(3px); 
+	-ms-filter: blur(3px); 
+	filter: blur(3px); 
+}
+
+.form-wrapper{
+	min-width: 400px;
+	/*display: block;*/
+	display: none;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom:   10px;
+	border-radius: 10px;
+	position: absolute;
+	top: 170px;
+	left: 50%;
+	transform: translate(-50%,0);
+	background: #ada9b8;
+
+}
+
+.book-form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+input{
+	outline: none;
+}
+.input-query{
+	margin-top: 10px;
+	font-size: 1.2em;
+
+}
+
+.input-fields{
+	width: 300px;
+	height: 1.5em;
+	padding: 0.5em;
+	border: none;
+	border-radius: 10px;
+}
+
+#Page-Count{
+	width: 100px;
+}
+
+.add-book,#close-form{
+	background: #ddd;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 40px;
+	width: 60px;
+	border: 1px solid;
+	border-radius: 10px;
+	cursor: pointer;
+	outline: none;
+}
+
+#newbtn:hover,.add-book:hover,#close-form:hover{
+	/*background: #aaa;*/
+	transform: scale(1.1);
+}
+
+.del-btn{
+	color: red;
+	cursor: pointer;
+}
