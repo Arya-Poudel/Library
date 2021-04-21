@@ -1,20 +1,39 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 h1{
 	color: #e3891b;
 	text-align: center;
-	font-family: Lucida Calligraphy;
+	font-family: 'Inconsolata', monospace;
 	text-shadow: 2px 2px yellow;
+}
 
+header{
+	background: #e7f8f9;
+	display: flex;
+	justify-content: space-around;
+	padding: 15px;
+	margin-bottom: 10px;
 }
 
 #newbtn{
-	border:1px solid;
+	border:1px solid #b2ebf2;
 	border-radius: 10px;
-	background: #ada9b8;
-	height: 3em;
-	width: 100px;
+	background: #b2ebf2;
+	padding: 10px;
 	cursor: pointer;
 	outline: none;
-	margin-left: 50px;
+	color:  #e3891b;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+}
+
+#newbtn:hover{
+	background: #0887d2;
+	color: #fbdfac;
 }
 
 .container{
@@ -58,18 +77,18 @@ table{
 }
 
 .form-wrapper{
-	min-width: 400px;
+	width: 90%;
+	max-width: 400px;
 	/*display: block;*/
 	display: none;
 	text-align: center;
-	padding-top: 10px;
-	padding-bottom:   10px;
+	padding: 10px;
 	border-radius: 10px;
 	position: absolute;
-	top: 170px;
+	top: 20%;
 	left: 50%;
 	transform: translate(-50%,0);
-	background: #ada9b8;
+	background: #b2ebf2;
 
 }
 
@@ -85,14 +104,16 @@ input{
 .input-query{
 	margin-top: 10px;
 	font-size: 1.2em;
-
+	color:  #e3891b;
+	font-family: 'Inconsolata', monospace;
+	font-weight: bold;
 }
 
 .input-fields{
 	width: 300px;
 	height: 1.5em;
-	padding: 0.5em;
-	border: none;
+	padding: 1rem;
+	border: 1px solid black;
 	border-radius: 10px;
 }
 
@@ -100,21 +121,33 @@ input{
 	width: 100px;
 }
 
-.add-book,#close-form{
-	background: #ddd;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	height: 40px;
-	width: 60px;
-	border: 1px solid;
+.add-book, #close-form{
+	border: 1px solid black;
 	border-radius: 10px;
+	padding: 10px;
 	cursor: pointer;
-	outline: none;
+	letter-spacing: 1px;
+	font-weight: bold;
+	margin-top: 10px;
 }
 
-#newbtn:hover,.add-book:hover,#close-form:hover{
-	/*background: #aaa;*/
-	transform: scale(1.1);
+.add-book{
+	background:  #e3891b;
+	color: white;
+}
+
+#close-form{
+	background: #525658;
+	color: white;
+	
+}
+
+#close-form:hover{
+	background: #1b1c1d;
+}
+
+.add-book:hover{
+	background: orange;
 }
 
 .del-btn{
