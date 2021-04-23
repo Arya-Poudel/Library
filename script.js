@@ -1,95 +1,117 @@
-let table = document.getElementById('mytable');
-let closeBtn = document.getElementById('close-form');
-let formDiv = document.querySelector(".form-wrapper");
-let newbookBtn = document.getElementById('newbtn');
-let form = document.getElementById("bookform");
+const bookContainer = document.querySelector('.book-container');
+const closeBtn = document.getElementById('close-form');
+const formDiv = document.querySelector(".form-wrapper");
+const newbookBtn = document.getElementById('newbtn');
+const submitBtn = document.querySelector('.add-book');
+const titleField = document.getElementById('Title');
+const authorField = document.getElementById('Author');
+const pageField = document.getElementById('Page-Count');
+const isReadField = document.getElementById('Read');
+const formError = document.querySelector('.form-error');
 
 let mylibrary = [];
 
 function book(title, author, pages, read) {
-			this.title = title;
-			this.author = author;
-			this.pages = pages;
-			this.read = read;
-	}
+	this.title = title;
+	this.author = author;
+	this.pages = pages;
+	this.read = read;
+}
+
+book1 = new book('Dune', 'Frank Herbert', 350, true);
+book2 = new book('The Hobbit', 'JRR Tolkein', 300, false);
+mylibrary.push(book1);
+mylibrary.push(book2);
+
+
+newbookBtn.addEventListener('click', () =>{
+	formDiv.style.display = 'block';
+	bookContainer.classList.add('blur');
+});
+
+
+closeBtn.addEventListener('click',() =>{
+	formDiv.style.display = 'none';
+	bookContainer.classList.remove('blur');
+});
+
+
+submitBtn.addEventListener('click', checkFormValidity);
+
+function checkFormValidity(){
+	if (!titleField.checkValidity() || !authorField.checkValidity() || !pageField.checkValidity()) {
+				formError.style.display = 'block';
+			    event.preventDefault();
+				return;
+			}
+	formError.style.display = 'none';
+	addBookToLibrary();
+	displayLibrary();
+	formDiv.style.display = 'none';
+	bookContainer.classList.remove('blur');
+	document.forms['bookform'].reset();
+	event.preventDefault();
+}
+
 
 function addBookToLibrary(){
-	let newtitle = document.getElementById('Title').value;
-	let newauthor = document.getElementById('Author').value;
-	let newpage = document.getElementById('Page-Count').value;
-	let newread = document.getElementById('Read').checked;
+	let newtitle = titleField.value;
+	let newauthor = authorField.value;
+	let newpage = pageField.value;
+	let newread = isReadField.checked;
 	bookToAdd = new book(newtitle,newauthor,newpage,newread);
 	mylibrary.push(bookToAdd);
 }
 
-
-book1 = new book('Dune', 'Frank Herbert', 350, true)
-mylibrary.push(book1);
-
-function displayLibrary(){
- 	//clear the contents
-	while (table.rows.length > 1) {
-  		table.deleteRow(1);
-	}
- 	for (let i = 0; i < mylibrary.length; i++) {
-		let row = document.createElement('tr');
-		// row.setAttribute('book-id', i + 1);
-		if (i == mylibrary.length - 1 ) {
-			row.classList.add('last-row-style')
-		} 
-		else {
-			row.classList.add('row-style');
-		}
-		
-		table.appendChild(row);
-
-		let titleData = document.createElement('td');
-		titleData.textContent = mylibrary[i].title;
-		row.appendChild(titleData);
-
-		let authorData = document.createElement('td');
-		authorData.textContent = mylibrary[i].author;
-		row.appendChild(authorData);
-
-		let pageData = document.createElement('td');
-		pageData.textContent = mylibrary[i].pages;
-		row.appendChild(pageData);
-
-		let readData = document.createElement('td').appendChild(document.createElement('input'));
-		readData.type = 'checkbox';
-		readData.checked = mylibrary[i].read;
-		row.appendChild(readData);
-
-		let delData = document.createElement('td');
-		delData.textContent = 'Del';
-		delData.classList.add('del-btn');
-		row.appendChild(delData);
-		delData.addEventListener('click', removeBookFromLibrary)
-	}
-};
-
-function removeBookFromLibrary(){
-	mylibrary.splice(this.parentNode.rowIndex - 1, 1);
+function removeBookFromLibrary(index){
+	mylibrary.splice(index, 1);
 	displayLibrary();
 }
 
-newbookBtn.addEventListener('click', () =>{
-	formDiv.style.display = 'block';
-	table.classList.add('blur');
-});
-
-closeBtn.addEventListener('click',() =>{
-	formDiv.style.display = 'none';
-	table.classList.remove('blur');
-});
-
-form.onsubmit = function(){
-	addBookToLibrary();
-	document.forms['bookform'].reset();
+function toggleReadBook(index){
+	mylibrary[index].read = !mylibrary[index].read;
 	displayLibrary();
-	formDiv.style.display = 'none';
-	table.classList.remove('blur');
-	return false;
+}
+
+function displayLibrary(){
+	//clear items
+	bookContainer.textContent = '';
+
+	mylibrary.forEach((item, index) => {
+		const newDiv = document.createElement('div');
+		newDiv.classList.add('added-books');
+		const titleDiv = document.createElement('h2');
+		titleDiv.textContent = item.title;
+		const authorDiv = document.createElement('h3');
+		authorDiv.textContent = 'By: ' + item.author;
+		const pageDelDiv = document.createElement('div');
+		pageDelDiv.classList.add('page-del-div');
+		const pageDiv = document.createElement('p');
+		pageDiv.textContent = 'Page-Count: ' + item.pages;
+		const delBtn = document.createElement('span');
+		delBtn.classList.add('material-icons-outlined', 'del-btn');
+		delBtn.textContent = 'delete';
+		delBtn.addEventListener('click', () => removeBookFromLibrary(index));
+		const readBtn = document.createElement('input');
+		readBtn.type = 'checkbox';
+		readBtn.checked = item.read;
+		readBtn.addEventListener('click', () => toggleReadBook(index));
+
+		newDiv.appendChild(titleDiv);
+		newDiv.appendChild(authorDiv);
+		pageDelDiv.appendChild(pageDiv);
+		pageDelDiv.appendChild(readBtn);
+		pageDelDiv.appendChild(delBtn);
+		
+		newDiv.appendChild(pageDelDiv);
+
+		if (item.read) {
+			newDiv.classList.add('read');
+		} else {
+			newDiv.classList.add('unread');
+		}
+		bookContainer.appendChild(newDiv);
+	});
 };
 
 displayLibrary();

@@ -32,41 +32,10 @@ header{
 }
 
 #newbtn:hover{
+	border:1px solid #0887d2;
 	background: #0887d2;
 	color: #fbdfac;
 }
-
-.container{
-	display: flex;
-	justify-content: center;
-	
-}
-
-table{
-			min-width: 600px;
-			border-collapse: collapse;
-			border-radius: 10px;
-			overflow: hidden;
-		}
-
-		thead th{
-			background: #fa9d39;
-			color: black;
-			text-align: left;
-			font-size: 1.3em;
-		}
-
-		th,td{
-			padding: 10px;
-		}
-
-		.row-style{
-			border-bottom: 1px solid #aaa;
-		}
-
-		.last-row-style{
-			border-bottom: 2px solid #fa9d39;
-		}
 
 .blur { 
 	-webkit-filter: blur(3px); 
@@ -98,9 +67,15 @@ table{
 	align-items: center;
 }
 
+.form-error{
+	display: none;
+	color: red;
+}
+
 input{
 	outline: none;
 }
+
 .input-query{
 	margin-top: 10px;
 	font-size: 1.2em;
@@ -150,7 +125,56 @@ input{
 	background: orange;
 }
 
+.book-container{
+	width: 90%;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+@media(max-width: 400px){
+	.book-container{
+		grid-template-columns: none;
+		justify-content: stretch;
+		align-items: center;
+	}
+}
+
+.added-books{
+	max-width: 400px;
+	padding: 15px;
+	margin: 10px;
+	border-radius: 10px;
+	font-family: 'Inconsolata', monospace;
+	display: grid;
+	grid-gap: 10px;
+}
+
 .del-btn{
 	color: red;
 	cursor: pointer;
+}
+
+.added-books h2{
+	text-decoration: underline;
+	text-transform: uppercase;
+}
+
+.page-del-div{
+	display: grid;
+	align-items: center;
+	grid-template-columns: 5fr 1fr 1fr;
+}
+
+.page-del-div input{
+	width: 20px;
+	height: 15px;
+}
+
+.read{
+	background: #a3f395;
+}
+
+.unread{
+	background: #d4cecf;
 }

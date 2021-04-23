@@ -7,47 +7,39 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
 </head>
 <body>
 	<header>
 		<h1>Your Online Library</h1>
 		<button id="newbtn">Add new book</button>
 	</header>
-	
 
-	<div class="container">
-	  <table id="mytable">
-	 
-		<thead>
-		<tr>
-			<th>Title</th>
-			<th>Author</th>
-			<th>Page Count</th>
-			<th>Read</th>
-			<th></th>
-		</tr>
-	   </thead>
-	  </table>
+	<div class="book-container">
 	</div>
 
 	<div class="form-wrapper">
 		
-		<form  id="bookform" autocomplete="off">
+		<form  id="bookform" autocomplete="off" novalidate>
 		  <div class="book-form">
 			<label for = "Title" class="input-query">Title: </label>
-			<input type="text" name="Title" id="Title" class="input-fields" required>
+			<input type="text" name="Title" id="Title" class="input-fields" value="" required>
 			
 			<label for="Author" class="input-query">Author: </label>
-			<input type="text" name="Author" id="Author" class="input-fields" required>
+			<input type="text" name="Author" id="Author" class="input-fields" value="" required>
 			
 			<label for = "Page-Count" class="input-query">Page-Count: </label>
-			<input type="number" min="1" name="Page-Count" id="Page-Count" class="input-fields" required>
+			<input type="number" min="1" name="Page-Count" id="Page-Count" value="" class="input-fields" required>
 			
 			<label for="Read" class="input-query">Read?</label>
 			<input type="checkbox" name="Read" id="Read">
 		  </div>
-			<input type="submit" name="Submit" class="add-book" value="Submit">
-			<button id="close-form">Close</button>
+		  <div class="form-error">
+		  	<p>Please fill all the requied details.</p>
+		  </div>
+			<button type="submit" name="Submit" class="add-book" value="Submit">Submit</button> 
+			<button id="close-form" type="button">Close</button>
 		</form>
 		
 	</div>
