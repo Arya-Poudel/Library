@@ -9,7 +9,10 @@ const pageField = document.getElementById('Page-Count');
 const isReadField = document.getElementById('Read');
 const formError = document.querySelector('.form-error');
 
+
 let mylibrary = [];
+
+let addedBooks = JSON.parse(localStorage.getItem('addedBooks') || "[]")
 
 function book(title, author, pages, read) {
 	this.title = title;
@@ -18,20 +21,26 @@ function book(title, author, pages, read) {
 	this.read = read;
 }
 
-book1 = new book('Dune', 'Frank Herbert', 350, true);
-book2 = new book('The Hobbit', 'JRR Tolkein', 300, false);
-mylibrary.push(book1);
-mylibrary.push(book2);
-
+if (!localStorage.getItem('addedBooks')) {
+	book1 = new book('Dune', 'Frank Herbert', 350, true);
+	book2 = new book('The Hobbit', 'JRR Tolkein', 300, false);
+	mylibrary.push(book1);
+	mylibrary.push(book2);
+	localStorage.setItem('addedBooks', JSON.stringify(mylibrary));
+} else{
+	mylibrary = addedBooks;
+}
 
 newbookBtn.addEventListener('click', () =>{
 	formDiv.style.display = 'block';
+	formError.style.display = 'none';
 	bookContainer.classList.add('blur');
 });
 
 
 closeBtn.addEventListener('click',() =>{
 	formDiv.style.display = 'none';
+	document.forms['bookform'].reset();
 	bookContainer.classList.remove('blur');
 });
 
@@ -61,15 +70,18 @@ function addBookToLibrary(){
 	let newread = isReadField.checked;
 	bookToAdd = new book(newtitle,newauthor,newpage,newread);
 	mylibrary.push(bookToAdd);
+	localStorage.setItem('addedBooks', JSON.stringify(mylibrary));
 }
 
 function removeBookFromLibrary(index){
 	mylibrary.splice(index, 1);
+	localStorage.setItem('addedBooks', JSON.stringify(mylibrary));
 	displayLibrary();
 }
 
 function toggleReadBook(index){
 	mylibrary[index].read = !mylibrary[index].read;
+	localStorage.setItem('addedBooks', JSON.stringify(mylibrary));
 	displayLibrary();
 }
 
